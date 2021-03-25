@@ -15,6 +15,16 @@ class binance():
         self.API_SECRET=''
         self.API_KEY=''
 
+    def get_klines_data(self,symbol,interval):
+        '''Fonction pour obtenir les prix du symbol'''
+        response = requests.get('https://api.binance.com/api/v3/klines',params={'symbol':symbol,'interval':interval}).json()
+        return response
+
+    def get_24h_stats(self,symbol):
+        '''Fonction pour obtenir les statsistiques des dernières 24h'''
+        response = requests.get('https://api.binance.com/api/v3/ticker/24hr',params={'symbol':symbol}).json()
+        return response
+
     def connect_key(self,path):
         """ Load key and secret from file.
 
@@ -164,8 +174,18 @@ class binance():
 
 class kraken():
     '''Développement API pour automatisation d'echanges sur les marchés de kraken avec krakenex'''
-    def __init__(self) -> None:
+    def __init__(self):
         self.api=krakenex.API()
+ 
+    def get_24h_stats(self,symbol):
+        '''Fonction pour obtenir les statistiques des dernières 24h'''
+        response = requests.get('https://api.kraken.com/0/public/Ticker',params={'pair':symbol}).json()
+        return response
+
+    def get_klines_data(self,symbol,interval):
+        '''Fonction pour obtenir les informations des bougies'''
+        response = requests.get('https://api.kraken.com/0/public/OHLC',params={'pair':symbol,'interval':interval}).json()
+        return response
 
     def connect_key(self,path):
         '''Fonction pour connecter l'api au compte'''

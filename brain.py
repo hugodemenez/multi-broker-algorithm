@@ -1,4 +1,12 @@
-import time,datetime,math,trading_signal,importlib,brokers
+"""
+This program is the first version of a trading bot,
+It is made simple to use, the only things you have to do is to create your .key and place it in C:\\
+You can simply do this by executing with admin permissions the script named create_key_file
+"""
+
+
+
+import time,datetime,math,trading_signal,importlib,os
 
 def broker_selection():
     '''Returns name of the selected broker
@@ -10,42 +18,53 @@ def broker_selection():
         broker =str(input("Choose your broker:%s : "%broker_list))
     return broker
 
+def create_key_file():
+    broker = str(input("Enter your broker name :"))
+    API_KEY = str(input("Enter your API key :"))
+    SECRET_KEY = str(input("Enter your SECRET_KEY :"))
+    file = open("C:\\"+broker+".key","w")
+    file.write(API_KEY)
+    file.write(SECRET_KEY)
+    file.close()
+    return
 
-broker='kraken'
-if broker =='kraken':
-    broker=brokers.kraken()
-if broker=='binance':
-    broker=brokers.binance()
 
-path=str(input("Enter your .key path :"))
+broker_name = broker_selection()
+broker = getattr(importlib.import_module('brokers'), '%s'%broker_name)
+broker = broker()
+
+try:
+    file = open(r"C:\\" + str(broker_name) + ".key")
+    file.close()
+except:
+    print("We are going to create the .key file")
+    create_key_file()
+
+
+path=r"C:\\" + str(broker_name) + ".key"
 broker.connect_key(path)
 
-print(broker.get_balances())
 
 rendement=1.010
 
 
 class Timeout():
-    '''Definition de la classe pour avoir des informations en cas de perte de connexion'''
+    '''Stores all the sensible data we need incase of connexion timout'''
     def __init__(self):
         self.buy=0.0
         self.sell=0.0
         self.crypto=0.0
         self.stable=0.0
-
-#On definit une variable Timeout qui va enregistrer les données essentielles
 Timeout=Timeout()
 
 class Position():
-    '''Definition de la classe pour la position afin d'avoir ses informations apres le passage des ordres'''
+    '''Stores all the data of the current openned position'''
     def __init__(self):
         self.price=0.0
         self.status='close'
         self.volume=0.0
         self.id=''
         self.level=1
-
-#On definit la variable position qui va nous donner les infromations nécessaires pour la suite
 Position=Position()
 
 
