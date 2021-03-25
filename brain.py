@@ -1,8 +1,23 @@
-import krakenex,time,datetime,math,trading_signal,importlib
+import time,datetime,math,trading_signal,importlib,brokers
 
-#On definie l'api pour communiquer avec le serveur KRAKEN
-kraken = krakenex.API()
-kraken.load_key('kraken.key')
+def broker_selection():
+    '''Returns name of the selected broker
+    
+    '''
+    broker_list=['kraken','binance']
+    broker =''
+    while broker not in broker_list:
+        broker =str(input("Choose your broker:%s : "%broker_list))
+    return broker
+
+
+broker='kraken'
+if broker =='kraken':
+    broker=brokers.kraken()
+if broker=='binance':
+    broker=brokers.binance()
+print(broker.price('ETHEUR'))
+
 rendement=1.010
 
 
@@ -34,8 +49,7 @@ Position=Position()
 def open_position():
     '''Passage d'ordre au marché avec stop loss à 2-rendement'''
     '''On ouvre la position avec un stop loss prédéfinie''' 
-    price = Price().buy
-    
+
     Position.status='open'    
     Position.level=1
     return 

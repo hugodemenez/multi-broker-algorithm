@@ -9,7 +9,7 @@ import time,json,hmac,hashlib,requests,krakenex
 from urllib.parse import urljoin, urlencode
 
 
-class binance_api():
+class binance():
     '''Développement API pour automatisation d'echanges sur les marchés de binance'''
     def __init__(self):
         self.API_SECRET=''
@@ -162,7 +162,7 @@ class binance_api():
         return response
         
 
-class kraken_api():
+class kraken():
     '''Développement API pour automatisation d'echanges sur les marchés de kraken avec krakenex'''
     def __init__(self) -> None:
         self.api=krakenex.API()
