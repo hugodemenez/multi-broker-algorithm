@@ -16,7 +16,11 @@ if broker =='kraken':
     broker=brokers.kraken()
 if broker=='binance':
     broker=brokers.binance()
-print(broker.price('ETHEUR'))
+
+path=str(input("Enter your .key path :"))
+broker.connect_key(path)
+
+print(broker.get_balances())
 
 rendement=1.010
 
