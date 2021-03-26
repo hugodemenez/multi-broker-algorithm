@@ -27,22 +27,22 @@ def buy_signal(symbol):
     handler.set_screener_as_crypto()
     try:
         #On recupere les données des analyses techniques et du marché
-        resultat={}
+        result={}
         #On choisi de regarder le marché sur 1 heure
         handler.set_interval_as(Interval.INTERVAL_1_HOUR)
         analyse_1h=handler.get_analysis()
         for outil in valeurs['analyse_1h']:
-            resultat[outil+'_1h']=(analyse_1h.indicators[outil])
+            result[outil+'_1h']=(analyse_1h.indicators[outil])
         #On choisi de regarder le marché sur 15 minutes
         handler.set_interval_as(Interval.INTERVAL_15_MINUTES)
         analyse_15m=handler.get_analysis()
         for outil in valeurs['analyse_15m']:
-            resultat[outil+'_15m']=(analyse_15m.indicators[outil])
+            result[outil+'_15m']=(analyse_15m.indicators[outil])
         handler.set_interval_as(Interval.INTERVAL_1_MINUTE)
         analyse_1m=handler.get_analysis()
         for outil in valeurs['analyse_1m']:
-            resultat[outil+'_1m']=(analyse_1m.indicators[outil])
-        print(resultat)
+            result[outil+'_1m']=(analyse_1m.indicators[outil])
+        print(result)
         print(brokers.binance().get_24h_stats(symbol))
     except:
         print('Analyse du signal impossible')
