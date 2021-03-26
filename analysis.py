@@ -5,6 +5,8 @@ une moyenne mobile par exemple. Ou un volume. Ensuite on peut fabriquer des fonc
 Tradingview, nous permet de récuperer efficacement ce type d'information. Mais il ne faut pas aller plus loin, car on réussi sur le long terme seulement ce que l'on maîtrise.
 """
 
+__author__ = 'Hugo Demenez <hdemenez@hotmail.fr>'
+
 from tradingview_ta import TA_Handler, Interval
 import brokers
 

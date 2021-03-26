@@ -4,7 +4,7 @@ It is made simple to use, the only things you have to do is to create your .key 
 You can simply do this by executing with admin permissions the script named create_key_file
 """
 
-
+__author__ = 'Hugo Demenez <hdemenez@hotmail.fr>'
 
 import time,datetime,analysis,importlib,brokers
 
