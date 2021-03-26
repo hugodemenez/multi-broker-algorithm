@@ -129,6 +129,4 @@ def main():
             break
 
 if __name__=='__main__':
-    print(kraken.account_information())
-    print(binance.account_information())
-    pass
+    main()
