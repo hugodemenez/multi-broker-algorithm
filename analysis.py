@@ -1,8 +1,10 @@
 r"""
-Apres un grand nombre de recherches et de temps passé à analyser les marchés, il est sûr que la recette magique n'existe pas. Il faut la fabriquer.
-Je pense qu'il est important de créer son propre outil d'analyse. Pour cela il est simplement nécessaire de recuperer les informations basiques comme
-une moyenne mobile par exemple. Ou un volume. Ensuite on peut fabriquer des fonctions mathématiques avec cela.
-Tradingview, nous permet de récuperer efficacement ce type d'information. Mais il ne faut pas aller plus loin, car on réussi sur le long terme seulement ce que l'on maîtrise.
+After a lot of researchs and time spent analyzing the markets, it is certain that the magic recipe does not exist. We have to build it.
+I think it’s important to create your own analytical tools. For this it is simply necessary to retrieve basic information like
+a moving average, for example. Or a volume. Then we can make mathematical functions out of that.
+Tradingview_ta allows us to efficiently retrieve this type of information. But we must not go any further, because in the long term we only succeed in what we master.
+
+don't hesitate to give a star to : https://github.com/deathlyface/python-tradingview-ta
 """
 
 __author__ = 'Hugo Demenez <hdemenez@hotmail.fr>'
