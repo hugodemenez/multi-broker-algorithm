@@ -80,7 +80,7 @@ I will try my best to deal with every exceptions. And to make a user-friendly gu
 
 ## Installation
 
-<a href="https://github.com/hugodemenez/EasyTrading/archive/refs/heads/main.zip" target="_blank"><img src="https://github.com/hugodemenez/EasyTrading/blob/main/assets/download.png" width=12px height=12px></a>
+<a href="https://github.com/hugodemenez/EasyTrading/archive/refs/heads/main.zip" target="_blank"><img src="https://github.com/hugodemenez/EasyTrading/blob/main/assets/download.png" width=24px height=24px></a>
 
 ```
 python3 brain.py
