@@ -5,12 +5,15 @@
   <strong>Automate your trades on many brokers with python</strong>
 </div>
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+<div align="center">
+  <!-- license -->
+  <a href="https://tldrlegal.com/license/mit-license">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg"
+      alt="license" />
+  </a>
+</div>
 
 <br />
-
-
-
 
 
 <div align="center">
