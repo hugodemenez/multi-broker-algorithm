@@ -14,7 +14,7 @@ import brokers
 
 
 def buy_signal(symbol):
-    '''Cette fonction est une fonction qui permet d'obtenir des signaux d'entrée par rapport à des analyses techniques'''
+    '''This function allows you to obtain input signals in according to a technical analysis'''
     valeurs={'analyse_1h':['SMA30','SMA10'],
     'analyse_15m':['SMA30','SMA10'],
     'analyse_1m':['SMA30','SMA10'],
