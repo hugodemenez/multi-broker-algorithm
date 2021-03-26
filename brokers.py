@@ -38,17 +38,8 @@ class binance():
         finally:
             return stats
         
-
     def connect_key(self,path):
-        """ Load key and secret from file.
-
-        Expected file format is key and secret on separate lines.
-
-        :param path: path to keyfile
-        :type path: str
-        :returns: None
-
-        """
+        '''Fonction pour connecter l'api au compte'''
         try:
             with open(path, 'r') as f:
                 self.API_KEY = f.readline().strip()
@@ -57,7 +48,6 @@ class binance():
         except:
             return ("Unable to read .key file")
         
-
     def price(self,symbol):
         '''Fonction pour obtenir les prix du symbol'''
         response = requests.get('https://api.binance.com/api/v3/ticker/bookTicker',params={'symbol':symbol}).json()
@@ -176,18 +166,30 @@ class binance():
 
     def get_open_orders(self):
         '''Fonction pour récuperer les ordres ouverts'''
-        timestamp = int(time.time() * 1000)
-        recvWindow=10000
+        timestamp = self.get_server_time()
         params = {
             'timestamp': timestamp,
-            'recvWindow':recvWindow,
         }
         query_string = urlencode(params)
         params['signature'] = hmac.new(self.API_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256).hexdigest()
         headers = {'X-MBX-APIKEY': self.API_KEY}
         url = urljoin('https://api.binance.com','/api/v3/openOrderList')
         response = requests.get(url, headers=headers, params=params).json()
-        return response
+        try:
+            code = response['code']
+            return ('Unable to get orders')
+        except:
+            if response==[]:
+                return {}
+        finally:
+            return response
+        
+        
+        
+    def get_server_time(self):
+        '''Fonction pour obtenir l'heure du serveur '''
+        response = requests.get('https://api.binance.com/api/v3/time',params={}).json()
+        return(response['serverTime'])
         
 
 class kraken():
@@ -257,6 +259,7 @@ class kraken():
         '''Fonction pour récuperer les ordres ouverts'''
         try:
             open_orders= self.api.query_private(method='OpenOrders')
+            open_orders=open_orders['result']['open']
         except:
             return ('unable to get open orders')
         return open_orders

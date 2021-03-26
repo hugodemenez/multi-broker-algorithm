@@ -9,15 +9,13 @@ from tradingview_ta import TA_Handler, Interval
 import brokers
 
 
-valeurs={'analyse_1h':['SMA30','SMA10'],
-    'analyse_15m':['SMA30','SMA10'],
-    'analyse_1m':['SMA30','SMA10'],
-}
-
-print(brokers.binance().get_24h_stats(symbol='BTCEUR'))
-print(brokers.kraken().get_24h_stats(symbol='BTCEUR'))
 def buy_signal(symbol):
     '''Cette fonction est une fonction qui permet d'obtenir des signaux d'entrée par rapport à des analyses techniques'''
+    valeurs={'analyse_1h':['SMA30','SMA10'],
+    'analyse_15m':['SMA30','SMA10'],
+    'analyse_1m':['SMA30','SMA10'],
+    }
+
     #On paramètre la lecture des analyses qui sont fournies par TradingView
     handler  = TA_Handler()
     handler.set_symbol_as(symbol)
@@ -41,17 +39,15 @@ def buy_signal(symbol):
         for outil in valeurs['analyse_1m']:
             resultat[outil+'_1m']=(analyse_1m.indicators[outil])
         print(resultat)
-
+        print(brokers.binance().get_24h_stats(symbol))
     except:
         print('Analyse du signal impossible')
         #Si l'analyse echoue alors on considere que l'on a pas eu de signal d'entrée
         return 'sell'
 
-    
-    
     return 'sell'
 
 
 if __name__=="__main__":
-    buy_signal()
+    buy_signal('ETHEUR')
     pass

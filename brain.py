@@ -6,7 +6,7 @@ You can simply do this by executing with admin permissions the script named crea
 
 
 
-import time,datetime,math,trading_signal,importlib,os
+import time,datetime,analysis,importlib,brokers
 
 def broker_selection():
     '''Returns name of the selected broker
@@ -27,8 +27,7 @@ def create_key_file():
     file.write(SECRET_KEY)
     file.close()
     return
-
-
+'''
 broker_name = broker_selection()
 broker = getattr(importlib.import_module('brokers'), '%s'%broker_name)
 broker = broker()
@@ -44,9 +43,17 @@ except:
 path=r"C:\\" + str(broker_name) + ".key"
 broker.connect_key(path)
 
-
 rendement=1.010
-
+'''
+'''
+Chossing kraken for developpement
+'''
+kraken=brokers.kraken()
+kraken.connect_key('C:\\kraken.key')
+binance=brokers.binance()
+binance.connect_key('C:\\binance.key')
+broker=brokers.kraken()
+broker.connect_key('C:\\kraken.key')
 
 class Timeout():
     '''Stores all the sensible data we need incase of connexion timout'''
@@ -69,22 +76,25 @@ Position=Position()
 
 
 
-def open_position():
-    '''Passage d'ordre au marché avec stop loss à 2-rendement'''
+def open_position(symbol):
+    '''Ouverture de la position'''
     '''On ouvre la position avec un stop loss prédéfinie''' 
-
+    #broker.create_market_order(symbol='BTCEUR',side='buy',quantity=10/broker.price['buy'])
     Position.status='open'    
     Position.level=1
     return 
 
 def get_position_status():
-    '''Verifie la situation de la position et deplace le stop loss avec un calcul pour le rapprocher au plus pres de la position en cas de hausse
-    car la position se ferme sur le stop loss dans tous les cas
+    '''Verifie la situation de la position 
     '''
-
+    if broker.get_open_orders()=={}:
+        return ('close')
+    else:
+        return ('open')
 
 def main():
-    '''Fonction principale (cerveau du programme)'''
+    '''Main program function'''
+    symbol='BTCEUR'
     #On initialise le temps de fonctionnement du programme
     start_time = time.time()
     print('Starting Trading:')
@@ -96,14 +106,14 @@ def main():
             if Position.status=='close':
                 #On actualise la librairie d'analyse afin de pouvoir changer la methode sans redémarrer le programme.
                 try:
-                    importlib.reload(trading_signal)
-                    signal = trading_signal.buy_signal()
+                    importlib.reload(analysis)
+                    signal = analysis.buy_signal(symbol)
                 except:
                     signal ='sell'
                     print('unable to get signal')
                 #Si l'analyse donne un signal alors on place la position
                 if signal=='buy':
-                    open_position()
+                    open_position(symbol)
             #On ralenti le programme pour ne pas avoir trop de requetes vers les serveurs (risque d'etre deconnecté)
             time.sleep(1)
             up_time+=1
