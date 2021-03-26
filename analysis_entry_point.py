@@ -16,11 +16,11 @@ valeurs={'analyse_1h':['SMA30','SMA10'],
 
 print(brokers.binance().get_24h_stats(symbol='BTCEUR'))
 print(brokers.kraken().get_24h_stats(symbol='BTCEUR'))
-def buy_signal():
+def buy_signal(symbol):
     '''Cette fonction est une fonction qui permet d'obtenir des signaux d'entrée par rapport à des analyses techniques'''
     #On paramètre la lecture des analyses qui sont fournies par TradingView
     handler  = TA_Handler()
-    handler.set_symbol_as('BTCEUR')
+    handler.set_symbol_as(symbol)
     handler.set_exchange_as_crypto_or_stock('COINBASE')
     handler.set_screener_as_crypto()
     try:
