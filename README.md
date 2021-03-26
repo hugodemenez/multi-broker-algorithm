@@ -4,9 +4,9 @@
 <div align="center">
   <strong>Automate your trades on many brokers with python</strong>
 </div>
-<div align="center">
+
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
-</div>
+
 <br />
 
 
