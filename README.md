@@ -79,7 +79,7 @@ Who doesn't want to win the market while sleeping ?
 I will try my best to deal with every exceptions. And to make a user-friendly gui as minimal as possible.
 
 ## Installation
-
+Download here :
 <a href="https://github.com/hugodemenez/EasyTrading/archive/refs/heads/main.zip" target="_blank"><img src="https://github.com/hugodemenez/EasyTrading/blob/main/assets/download.png" width=24px height=24px></a>
 
 ```
