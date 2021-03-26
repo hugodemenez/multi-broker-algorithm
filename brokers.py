@@ -183,13 +183,14 @@ class binance():
                 return {}
         finally:
             return response
-        
-        
-        
+         
     def get_server_time(self):
         '''Fonction pour obtenir l'heure du serveur '''
         response = requests.get('https://api.binance.com/api/v3/time',params={}).json()
-        return(response['serverTime'])
+        try:
+            return(response['serverTime'])
+        except:
+            return('unable to get server time')
         
 
 class kraken():
@@ -326,6 +327,15 @@ class kraken():
         except:
             return ('unable to join market')
         return ordre
+
+    def get_server_time(self):
+        '''Fonction pour obtenir l'heure du serveur '''
+        response = requests.get('https://api.kraken.com/0/public/Time',params={}).json()
+        try:
+            return(response['result']['unixtime'])
+        except:
+            return('unable to get server time')
+        
 
 if __name__=='__main__':
     pass
