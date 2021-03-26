@@ -24,17 +24,9 @@
 - [Features](#features)
 - [Example](#example)
 - [Philosophy](#philosophy)
-- [Events](#events)
-- [State](#state)
-- [Routing](#routing)
-- [Server Rendering](#server-rendering)
-- [Components](#components)
 - [Optimizations](#optimizations)
-- [FAQ](#faq)
-- [API](#api)
 - [Installation](#installation)
-- [See Also](#see-also)
-- [Support](#support)
+
 
 ## Features
 - __Get Price data for symbol:__ 
