@@ -49,5 +49,6 @@ def buy_signal(symbol):
 
 
 if __name__=="__main__":
+    
     buy_signal('ETHEUR')
     pass

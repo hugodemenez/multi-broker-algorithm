@@ -61,7 +61,7 @@ class binance():
 
     def account_information(self):
         '''Fonction pour obtenir les informations du compte'''
-        timestamp = int(time.time() * 1000)
+        timestamp = self.get_server_time()
         recvWindow=10000
         params = {
             'timestamp': timestamp,
@@ -243,7 +243,7 @@ class kraken():
     def account_information(self):
         '''Fonction pour obtenir les informations du compte'''
         try:
-            informations = self.api.query_private(method="Balance")
+            informations = self.api.query_private(method="Balance")['result']
         except:
             informations={'error':'unable to get informations'}
         return informations
@@ -251,7 +251,7 @@ class kraken():
     def get_balances(self):
         '''Fonction pour récuperer les soldes des portefeuilles'''
         try:
-            balances = self.api.query_private(method="Balance")
+            balances = self.api.query_private(method="Balance")['result']
         except:
             balances={'error':'unable to get balances'}
         return balances

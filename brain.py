@@ -79,7 +79,7 @@ Position=Position()
 def open_position(symbol):
     '''Ouverture de la position'''
     '''On ouvre la position avec un stop loss prédéfinie''' 
-    #broker.create_market_order(symbol='BTCEUR',side='buy',quantity=10/broker.price['buy'])
+    #broker.create_market_order(symbol='BTCEUR',side='buy',quantity=broker.balance(symbol)/broker.price['buy'])
     Position.status='open'    
     Position.level=1
     return 
@@ -101,8 +101,8 @@ def main():
     up_time=0
     while(True):
         try:
-            #Verifie la situation de la position et deplace le stop loss si nécessaire (en supprimant le precedent)
-            get_position_status()
+            #Verifie la situation de la position
+            Position.status = get_position_status()
             if Position.status=='close':
                 #On actualise la librairie d'analyse afin de pouvoir changer la methode sans redémarrer le programme.
                 try:
@@ -129,4 +129,6 @@ def main():
             break
 
 if __name__=='__main__':
-    main()
+    print(kraken.account_information())
+    print(binance.account_information())
+    pass
