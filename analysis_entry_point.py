@@ -6,7 +6,7 @@ Tradingview, nous permet de récuperer efficacement ce type d'information. Mais 
 """
 
 from tradingview_ta import TA_Handler, Interval
-import brokers,enum
+import brokers
 
 
 valeurs={'analyse_1h':['SMA30','SMA10'],

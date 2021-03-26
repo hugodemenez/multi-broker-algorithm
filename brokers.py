@@ -23,7 +23,21 @@ class binance():
     def get_24h_stats(self,symbol):
         '''Fonction pour obtenir les statsistiques des dernières 24h'''
         response = requests.get('https://api.binance.com/api/v3/ticker/24hr',params={'symbol':symbol}).json()
-        return response
+        try:
+            stats={
+                'volume':response['volume'],
+                'open':response['openPrice'],
+                'high':response['highPrice'],
+                'low':response['lowPrice'],
+                'last':response['lastPrice'],
+            }
+        except:
+            stats={
+                'error':response,
+            }
+        finally:
+            return stats
+        
 
     def connect_key(self,path):
         """ Load key and secret from file.
@@ -184,7 +198,22 @@ class kraken():
     def get_24h_stats(self,symbol):
         '''Fonction pour obtenir les statistiques des dernières 24h'''
         response = requests.get('https://api.kraken.com/0/public/Ticker',params={'pair':symbol}).json()
-        return response
+        
+        try:
+            for symbol in response['result']:
+                stats={
+                    'volume':response['result'][symbol]['v'][1],
+                    'open':response['result'][symbol]['o'],
+                    'high':response['result'][symbol]['h'][1],
+                    'low':response['result'][symbol]['l'][1],
+                    'last':response['result'][symbol]['c'][0],
+                }
+        except:
+            stats={
+                'error':response,
+            }
+        finally:
+            return stats
 
     def get_klines_data(self,symbol,interval):
         '''Fonction pour obtenir les informations des bougies'''
