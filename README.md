@@ -5,6 +5,8 @@
   <strong>Automate your trades on many brokers with python</strong>
 </div>
 
+<br />
+
 <div align="center">
   <!-- license -->
   <a href="https://tldrlegal.com/license/mit-license">
@@ -14,7 +16,6 @@
 </div>
 
 <br />
-
 
 <div align="center">
   <sub>Built by
