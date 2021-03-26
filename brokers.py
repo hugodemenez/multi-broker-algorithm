@@ -35,10 +35,14 @@ class binance():
         :returns: None
 
         """
-        with open(path, 'r') as f:
-            self.API_KEY = f.readline().strip()
-            self.API_SECRET = f.readline().strip()
-        return
+        try:
+            with open(path, 'r') as f:
+                self.API_KEY = f.readline().strip()
+                self.API_SECRET = f.readline().strip()
+            return ("Successfuly connected your keys")
+        except:
+            return ("Unable to read .key file")
+        
 
     def price(self,symbol):
         '''Fonction pour obtenir les prix du symbol'''
