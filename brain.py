@@ -79,7 +79,7 @@ Position=Position()
 def open_position(symbol):
     '''Ouverture de la position'''
     '''On ouvre la position avec un stop loss prédéfinie''' 
-    #broker.create_market_order(symbol='BTCEUR',side='buy',quantity=broker.balance(symbol)/broker.price['buy'])
+    broker.create_market_order(symbol='BTCEUR',side='buy',quantity=broker.balance(symbol)/broker.price['buy'])
     Position.status='open'    
     Position.level=1
     return 

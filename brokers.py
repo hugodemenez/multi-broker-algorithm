@@ -194,7 +194,6 @@ class binance():
         except:
             return('unable to get server time')
         
-
 class kraken():
     '''Développement API pour automatisation d'echanges sur les marchés de kraken avec krakenex'''
     def __init__(self):
