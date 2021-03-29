@@ -15,11 +15,11 @@ class binance():
         self.API_SECRET=''
         self.API_KEY=''
 
-    def get_klines_data(self,symbol,interval):
-        '''Fonction pour obtenir les prix du symbol [Open time,Open,High,Low,Close,Volume,Close time,
+    def get_klines_data(self,symbol):
+        '''Fonction pour obtenir les informations des bougies d'interval 1minute [Open time,Open,High,Low,Close,Volume,Close time,
         Quote asset volume,Number of trades,Taker buy base asset volume,Taker buy quote asset volume,Ignore.]
         '''
-        response = requests.get('https://api.binance.com/api/v3/klines',params={'symbol':symbol,'interval':interval}).json()
+        response = requests.get('https://api.binance.com/api/v3/klines',params={'symbol':symbol,'interval':'1m'}).json()
         return response
 
     def get_24h_stats(self,symbol):
@@ -220,12 +220,11 @@ class kraken():
         finally:
             return stats
 
-    def get_klines_data(self,symbol,interval):
-        '''Fonction pour obtenir les informations des bougies
-        interval in minutes : 1,5,15,30,60,240,1440
+    def get_klines_data(self,symbol):
+        '''Fonction pour obtenir les informations des bougies d'interval 1minute
         <time>, <open>, <high>, <low>, <close>, <vwap>, <volume>, <count>
         '''
-        response = requests.get('https://api.kraken.com/0/public/OHLC',params={'pair':symbol,'interval':interval}).json()
+        response = requests.get('https://api.kraken.com/0/public/OHLC',params={'pair':symbol,'interval':'1'}).json()
         return response
 
     def connect_key(self,path):
